@@ -6,9 +6,13 @@ import time
 n = int(input('Requests - '))
 i = 0
 count = 0
-
+y = 0
+n_i = str(input('Need interval(y/n) - '))
 ts = int(time.time())
 strs = []
+
+if n_i == 'y':
+    rps = int(input('Rounds - '))
 while i < n:
     i+=1
     ts += 1
@@ -36,7 +40,16 @@ while i < n:
 
     strs.append('{'+'"t": {0}, "hm": {1}, "pr": {2}, "t0": {3}, "t1": {4}, "t2": {5}, "t3": {6}, "t4": {7}, "t5": {8}, "t6": {9}, "t7": {10}, "t8": {11}, "Uext": {12}, "Upow": {13}, "soil1": {14}, "soil2": {15}, "soil3": {16}, "stationID": "{17}", "device_type": "Z", "firmware_version": {18}, "time": {19}'.format(t, hm, pr, t0, t1, t2, t3, t4, t5, t6, t7, t8, uext, upow, soil1, soil2, soil3, id, ver, ts)+'}')
 
-rs = [grequests.post('https://somnoynadno.ru/controller/send_datat', json=params) for params in strs]
-for r in grequests.imap(rs, size=16):
-    count += 1
-    print(count, 'done!')
+rs = [grequests.post('https://en3hsl28r8kxbsa.m.pipedream.net', json=params) for params in strs]
+
+if n_i == 'y':
+    while y < rps:
+        y+=1
+        for r in grequests.imap(rs, size=16):
+            count += 1
+            print(count, 'done!')
+        time.sleep(1)
+else:
+    for r in grequests.imap(rs, size=16):
+        count += 1
+        print(count, 'done!')
