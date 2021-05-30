@@ -40,7 +40,7 @@ while i < n:
 
     strs.append('{'+'"t": {0}, "hm": {1}, "pr": {2}, "t0": {3}, "t1": {4}, "t2": {5}, "t3": {6}, "t4": {7}, "t5": {8}, "t6": {9}, "t7": {10}, "t8": {11}, "Uext": {12}, "Upow": {13}, "soil1": {14}, "soil2": {15}, "soil3": {16}, "stationID": "{17}", "device_type": "Z", "firmware_version": {18}, "time": {19}'.format(t, hm, pr, t0, t1, t2, t3, t4, t5, t6, t7, t8, uext, upow, soil1, soil2, soil3, id, ver, ts)+'}')
 
-rs = [grequests.post('https://en3hsl28r8kxbsa.m.pipedream.net', json=params) for params in strs]
+rs = [grequests.post('https://somnoynadno.ru/controller/send_data', json=params) for params in strs]
 
 if n_i == 'y':
     while y < rps:
